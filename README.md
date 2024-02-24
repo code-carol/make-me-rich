@@ -1,5 +1,7 @@
 # 💸 Make Me Rich - Expense Tracker
 
+Be your own sugar daddy/mommy with this Expense Tracker App.
+
 ## ⚙️ Installation & Usage
 
 - Clone or download the repo
