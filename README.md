@@ -1,5 +1,7 @@
 # 💸 Make Me Rich - Expense Tracker
 
+Test
+
 ## ⚙️ Installation & Usage
 
 - Clone or download the repo
