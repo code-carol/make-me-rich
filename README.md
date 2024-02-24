@@ -1,6 +1,6 @@
 # 💸 Make Me Rich - Expense Tracker
 
-Test 2
+Test 3
 
 ## ⚙️ Installation & Usage
 
