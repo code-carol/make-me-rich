@@ -1,6 +1,6 @@
 # 💸 Make Me Rich - Expense Tracker
 
-Be your own sugar daddy/mommy with this Expense Tracker App.
+Be your own sugar daddy by managing your expenses with this Expense Tracker.
 
 ## ⚙️ Installation & Usage
 
