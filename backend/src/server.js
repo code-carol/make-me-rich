@@ -1,8 +1,10 @@
 const dotenv = require("dotenv");
+const path = require('path');
 const mongoose = require("mongoose");
 const User = require("./models/userModel");
+
 dotenv.config({
-  path: "/Users/carolineveloso/Desktop/make-me-rich/backend/src/.env",
+  path: path.resolve(__dirname, '../../.env')
 });
 
 const app = require("./app");
