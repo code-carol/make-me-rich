@@ -40,7 +40,7 @@ const Register = () => {
         >
           Register
         </Button>
-        <p>Don't have an account?</p> <a href="">Register</a>
+        <p>Already have an account?</p> <a href="">Login</a>
         <div>----- or -----</div>
         <Button
           className="register-btn"
