@@ -2,7 +2,7 @@ import "./Navbar.css";
 import Button from "../Button";
 
 const Navbar = () => {
-  const handleLogin = () => {};
+  const handleLoginPage = () => {};
   return (
     <>
       <div>
@@ -15,7 +15,7 @@ const Navbar = () => {
         <li>
           <Button
             className="navbar-btn"
-            handleOnClick={handleLogin}
+            handleOnClick={handleLoginPage}
             type="button"
           >
             Login
