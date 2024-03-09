@@ -3,7 +3,13 @@ import "./Navbar.css";
 const Navbar = () => {
   return (
     <>
-      <h1>Navbar</h1>
+      <ul>
+        <li></li>
+        <li>Features</li>
+        <li>About us</li>
+        <li>FAQ</li>
+        <li>Login</li>
+      </ul>
     </>
   );
 };
