@@ -5,9 +5,8 @@ const Navbar = () => {
   const handleLogin = () => {};
   return (
     <>
-      // Brand Icon
       <div>
-        <img src="" alt="Money Icon" />
+        <img src="./money.png" alt="Money Icon" />
       </div>
       <ul>
         <li>Features</li>
