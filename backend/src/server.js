@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const User = require("./models/userModel");
 dotenv.config({
-  path: "/Users/silvianeves/make-me-rich/make-me-rich/backend/src/.env",
+  path: "/Users/carolineveloso/Desktop/make-me-rich/backend/src/.env",
 });
 
 const app = require("./app");
@@ -17,6 +17,14 @@ mongoose
   .then(() => console.log("DB connection successful!"))
   .catch((err) => console.log(err));
 
+// const newUser = new User({
+//   name: "Silviane",
+//   email: "lalala@eamil.com",
+//   password: "password",
+//   income: 1000
+// });
+
+// newUser.save();
 
 const port = process.env.PORT;
 
