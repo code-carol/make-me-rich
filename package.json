@@ -1,21 +1,29 @@
 {
   "name": "make-me-rich",
   "version": "1.0.0",
-  "description": "",
+  "description": "Be your own sugar daddy by managing your expenses with this Expense Tracker.",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "cd frontend && vite",
+    "build": "cd frontend tsc && vite build",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:backend": "nodemon backend/src/server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-carol/make-me-rich.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code-carol/make-me-rich/issues"
+  },
+  "homepage": "https://github.com/code-carol/make-me-rich#readme",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
@@ -24,12 +32,12 @@
     "nodemon": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.1"
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
-    "@types/react": "^18.2.58",
-    "@types/react-dom": "^18.2.19",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.4"
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5"
   }
 }
