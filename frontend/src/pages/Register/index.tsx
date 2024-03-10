@@ -1,8 +1,31 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ChangeEvent } from "../../types";
+
+import {
+  auth,
+  registerWithEmailAndPassword,
+  loginWithGoogle,
+} from "../../Firebase";
+
 import Button from "../../components/Button";
 import "./Register.css";
 
 const Register = () => {
-  const handleRegister = () => {};
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    if (name !== "") {
+      registerWithEmailAndPassword(name, email, password);
+      navigate("/dashboard");
+    } else {
+      alert("Please enter you Full name");
+    }
+  };
+
   return (
     <>
       <div>
@@ -14,21 +37,27 @@ const Register = () => {
           placeholder="Full Name"
           id="name"
           name="name"
-          value=""
+          value={name}
+          onChange={(e: ChangeEvent) => setName(e.target.value)}
+          required
         />
         <input
           type="text"
           placeholder="Email"
           id="email"
           name="email"
-          value=""
+          value={email}
+          onChange={(e: ChangeEvent) => setEmail(e.target.value)}
+          required
         />
         <input
           type="text"
           placeholder="Password"
           id="password"
           name="password"
-          value=""
+          value={password}
+          onChange={(e: ChangeEvent) => setPassword(e.target.value)}
+          required
         />
         <input type="checkbox" id="remember" name="remember" value="" />
         <label htmlFor="remember">Remember me</label>
@@ -43,19 +72,19 @@ const Register = () => {
         <p>Already have an account?</p> <a href="">Login</a>
         <div>----- or -----</div>
         <Button
-          className="register-btn"
+          className="google-btn"
           handleOnClick={handleRegister}
           type="button"
         >
           Google
         </Button>
-        <Button
+        {/* <Button
           className="register-btn"
           handleOnClick={handleRegister}
           type="button"
         >
           Facebook
-        </Button>
+        </Button> */}
       </div>
     </>
   );
