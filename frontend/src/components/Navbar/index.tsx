@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <>
       <div>
-        <img src="./money.png" alt="Money Icon" />
+        <img src="frontend/public/money.png" alt="Money Icon" />
       </div>
       <ul>
         <li>Features</li>
