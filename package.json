@@ -4,8 +4,8 @@
   "description": "Be your own sugar daddy by managing your expenses with this Expense Tracker.",
   "main": "index.js",
   "scripts": {
-    "dev": "cd frontend && vite",
-    "build": "cd frontend && tsc && vite build",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:backend": "cd backend/src && nodemon server.js"
