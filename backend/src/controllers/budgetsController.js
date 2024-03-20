@@ -7,12 +7,12 @@ const createBudget = (req, res) => {
       .status(201)
       .json({
         message: "Budget created successfully.",
-        budget: savedBudget,
+        CreateBudget: savedBudget,
       })
       .catch((error) => {
         res.status(500).json({
           message: "Your budget could not be created. Please try again later.",
-          error: error,
+          CreateError: error,
         });
       });
   });
@@ -23,20 +23,43 @@ const getAllBudgets = (req, res) => {
     if (budgets) {
       res.status(200).json({
         message: "All budgets fetched successfully.",
-        budgets: budgets,
+        GetAllBudgets: budgets,
       });
     } else if (budgets.length === 0) {
       res.status(404).json({
         message: "No budgets found.",
-        budgets: budgets,
+        GetAllBudgets: budgets,
       });
     } else {
       res.status(500).json({
         message: "Something went wrong. Please try again later.",
-        error: error,
+        GetAllBudgets: error,
       });
     }
   });
 };
 
-module.exports = { createBudget, getAllBudgets };
+const getBudgetById = (req, res) => { 
+  Budget.findById(req.params.id, (budget, error) => {
+    if (budget) {
+      res.status(200).json({
+        message: "Budget found successfully.",
+        GetBudgetById: budget,
+      });
+    } else if (!budget) { 
+      res.status(404).json({
+        message: "Budget not found.",
+        GetBudgetById: budget,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        GetBudgetById: error,
+      });
+    }
+  });
+};
+
+
+
+module.exports = { createBudget, getAllBudgets, getBudgetById };
