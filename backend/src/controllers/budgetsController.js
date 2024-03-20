@@ -39,14 +39,15 @@ const getAllBudgets = (req, res) => {
   });
 };
 
-const getBudgetById = (req, res) => { 
-  Budget.findById(req.params.id, (budget, error) => {
+const getBudgetById = (req, res) => {
+  const id = req.params.id;
+  Budget.findById(id, (budget, error) => {
     if (budget) {
       res.status(200).json({
         message: "Budget found successfully.",
         GetBudgetById: budget,
       });
-    } else if (!budget) { 
+    } else if (!budget) {
       res.status(404).json({
         message: "Budget not found.",
         GetBudgetById: budget,
@@ -60,6 +61,26 @@ const getBudgetById = (req, res) => {
   });
 };
 
+const updateBudget = (req, res) => {
+  const id = req.params.id;
+  Budget.findByIdAndUpdate(id, req.body, { new: true }, (budget, error) => {
+    if (budget) {
+      res.status(200).json({
+        message: "Budget updated successfully.",
+        UpdateBudget: budget,
+      });
+    } else if (!budget) {
+      res.status(404).json({
+        message: "Budget not found.",
+        UpdateBudget: budget,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        UpdateBudget: error,
+      });
+    }
+  });
+};
 
-
-module.exports = { createBudget, getAllBudgets, getBudgetById };
+module.exports = { createBudget, getAllBudgets, getBudgetById, updateBudget };

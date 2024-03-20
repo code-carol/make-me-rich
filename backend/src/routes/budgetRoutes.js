@@ -5,5 +5,6 @@ const router = express.Router();
 router.post("/", budgetController.createBudget);
 router.get("/", budgetController.getAllBudgets);
 router.get("/:id", budgetController.getBudgetById);
+router.patch("/:id", budgetController.updateBudget);
 
 module.exports = router;
