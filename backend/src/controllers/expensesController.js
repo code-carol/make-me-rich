@@ -67,4 +67,26 @@ const updateExpense = (req, res) => {
   });
 };
 
-module.exports = { getAllExpenses, createExpense, getExpense, updateExpense };
+const deleteExpense = (req, res) => {
+  const id = req.params.id;
+  Expense.findByIdAndDelete(id, (error, expense) => {
+    if (error) {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+      });
+    } else {
+      res.status(200).json({
+        message: "Expense deleted successfully.",
+        expense,
+      });
+    }
+  });
+};
+
+module.exports = {
+  getAllExpenses,
+  createExpense,
+  getExpense,
+  updateExpense,
+  deleteExpense,
+};
