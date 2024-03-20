@@ -2,15 +2,20 @@ const Expense = require("../models/expensesModel");
 
 const getAllExpenses = (req, res) => {
   Expense.find((error, expenses) => {
-    if (error) {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        GetAllExpenses: error,
-      });
-    } else {
+    if (expenses) {
       res.status(200).json({
         message: "All expenses fetched successfully.",
         GetAllExpenses: expenses,
+      });
+    } else if (expenses.length === 0) {
+      res.status(404).json({
+        message: "No expenses found.",
+        GetAllExpenses: expenses,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        GetAllExpenses: error,
       });
     }
   });
@@ -38,15 +43,20 @@ const createExpense = (req, res) => {
 const getExpense = (req, res) => {
   const id = req.params.id;
   Expense.findById(id, (error, expense) => {
-    if (error) {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        GetExpense: error
-      });
-    } else {
+    if (expense) {
       res.status(200).json({
         message: "Expense fetched successfully.",
-        GetExpense: expense
+        GetExpense: expense,
+      });
+    } else if (expense.length === 0) {
+      res.status(404).json({
+        message: "No expense found.",
+        GetExpense: expense,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        GetExpense: error,
       });
     }
   });
@@ -55,15 +65,20 @@ const getExpense = (req, res) => {
 const updateExpense = (req, res) => {
   const id = req.params.id;
   Expense.findByIdAndUpdate(id, req.body, { new: true }, (error, expense) => {
-    if (error) {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        UpdateExpense: error
-      });
-    } else {
+    if (expense) {
       res.status(200).json({
         message: "Expense updated successfully.",
-        UpdatedExpense: expense
+        UpdatedExpense: expense,
+      });
+    } else if (!expense) {
+      res.status(404).json({
+        message: "Expense not found.",
+        UpdatedExpense: expense,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        UpdateExpense: error,
       });
     }
   });
@@ -72,15 +87,20 @@ const updateExpense = (req, res) => {
 const deleteExpense = (req, res) => {
   const id = req.params.id;
   Expense.findByIdAndDelete(id, (error, expense) => {
-    if (error) {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        DeleteExpense: error
-      });
-    } else {
+    if (expense) {
       res.status(200).json({
         message: "Expense deleted successfully.",
-        DeletedExpense: expense
+        DeletedExpense: expense,
+      });
+    } else if (!expense) {
+      res.status(404).json({
+        message: "Expense not found.",
+        DeleteExpense: expense,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        DeleteExpense: error,
       });
     }
   });
