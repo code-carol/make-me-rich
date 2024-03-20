@@ -83,4 +83,32 @@ const updateBudget = (req, res) => {
   });
 };
 
-module.exports = { createBudget, getAllBudgets, getBudgetById, updateBudget };
+const deleteBudget = (req, res) => {
+  const id = req.params.id;
+  Budget.findByIdAndDelete(id, (budget, error) => {
+    if (budget) {
+      res.status(200).json({
+        message: "Budget deleted successfully.",
+        DeleteBudget: budget,
+      });
+    } else if (!budget) {
+      res.status(404).json({
+        message: "Budget not found.",
+        DeleteBudget: budget,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        DeleteBudget: error,
+      });
+    }
+  });
+};
+
+module.exports = {
+  createBudget,
+  getAllBudgets,
+  getBudgetById,
+  updateBudget,
+  deleteBudget,
+};
