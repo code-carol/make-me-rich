@@ -1,8 +1,9 @@
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const User = require("./models/userModel");
+const path = require("path");
+
 dotenv.config({
-  path: "/Users/silvianeves/make-me-rich/make-me-rich/backend/src/.env",
+  path: path.resolve(__dirname, "../../.env")
 });
 
 const app = require("./app");
@@ -16,7 +17,6 @@ mongoose
   .connect(DB)
   .then(() => console.log("DB connection successful!"))
   .catch((err) => console.log(err));
-
 
 const port = process.env.PORT;
 

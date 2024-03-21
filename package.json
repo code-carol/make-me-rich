@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "cd frontend && vite",
-    "build": "cd frontend tsc && vite build",
+    "build": "cd frontend && tsc && vite build",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:backend": "nodemon backend/src/server.js"
+    "start:backend": "cd backend/src && nodemon server.js"
   },
   "repository": {
     "type": "git",
