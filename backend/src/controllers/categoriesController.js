@@ -1,7 +1,7 @@
-const categoryModel = require("../models/categoryModel");
+const Category = require("../models/categoryModel");
 
 const createCategory = (req, res) => {
-  const category = new categoryModel(req.body);
+  const category = new Category(req.body);
   category
     .save()
     .then((savedCategory) => {
@@ -19,7 +19,7 @@ const createCategory = (req, res) => {
 };
 
 const getAllCategories = (req, res) => {
-  categoryModel.find((error, categories) => {
+  Category.find((error, categories) => {
     if (categories) {
       res.status(200).json({
         message: "All categories fetched successfully.",
@@ -41,7 +41,7 @@ const getAllCategories = (req, res) => {
 
 const getCategoryById = (req, res) => {
   const id = req.params.id;
-  categoryModel.findById(id, (error, category) => {
+  Category.findById(id, (error, category) => {
     if (category) {
       res.status(200).json({
         message: "Category fetched successfully.",
@@ -63,34 +63,29 @@ const getCategoryById = (req, res) => {
 
 const updateCategory = (req, res) => {
   const id = req.params.id;
-  categoryModel.findByIdAndUpdate(
-    id,
-    req.body,
-    { new: true },
-    (error, category) => {
-      if (category) {
-        res.status(200).json({
-          message: "Category updated successfully.",
-          UpdateCategory: category,
-        });
-      } else if (!category) {
-        res.status(404).json({
-          message: "Category not found.",
-          UpdateCategory: category,
-        });
-      } else {
-        res.status(500).json({
-          message: "Something went wrong. Please try again later.",
-          UpdateCategory: error,
-        });
-      }
+  Category.findByIdAndUpdate(id, req.body, { new: true }, (error, category) => {
+    if (category) {
+      res.status(200).json({
+        message: "Category updated successfully.",
+        UpdateCategory: category,
+      });
+    } else if (!category) {
+      res.status(404).json({
+        message: "Category not found.",
+        UpdateCategory: category,
+      });
+    } else {
+      res.status(500).json({
+        message: "Something went wrong. Please try again later.",
+        UpdateCategory: error,
+      });
     }
-  );
+  });
 };
 
 const deleteCategory = (req, res) => {
   const id = req.params.id;
-  categoryModel.findByIdAndDelete(id, (error, category) => {
+  Category.findByIdAndDelete(id, (error, category) => {
     if (category) {
       res.status(200).json({
         message: "Category deleted successfully.",

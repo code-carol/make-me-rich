@@ -1,4 +1,4 @@
-const Expense = require("../models/expensesModel");
+const Expense = require("../models/expenseModel");
 
 const getAllExpenses = (req, res) => {
   Expense.find((error, expenses) => {

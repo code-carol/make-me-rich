@@ -1,7 +1,7 @@
-const goalModel = require("../models/goalModel");
+const Goal = require("../models/goalModel");
 
 const createGoal = (req, res) => {
-  const goal = new goalModel(req.body);
+  const goal = new Goal(req.body);
   goal
     .save()
     .then((savedGoal) => {
@@ -19,7 +19,7 @@ const createGoal = (req, res) => {
 };
 
 const getAllGoals = (req, res) => {
-  goalModel.find((error, goals) => {
+  Goal.find((error, goals) => {
     if (goals) {
       res.status(200).json({
         message: "All goals fetched successfully.",
@@ -41,7 +41,7 @@ const getAllGoals = (req, res) => {
 
 const getGoalById = (req, res) => {
   const id = req.params.id;
-  goalModel.findById(id, (error, goal) => {
+  Goal.findById(id, (error, goal) => {
     if (goal) {
       res.status(200).json({
         message: "Goal fetched successfully.",
@@ -63,7 +63,7 @@ const getGoalById = (req, res) => {
 
 const updateGoalById = (req, res) => {
   const id = req.params.id;
-  goalModel.findByIdAndUpdate(
+  Goal.findByIdAndUpdate(
     id,
     req.body,
     { new: true },
@@ -90,7 +90,7 @@ const updateGoalById = (req, res) => {
 
 const deleteGoalById = (req, res) => {
   const id = req.params.id;
-  goalModel.findByIdAndDelete(id, (error, deletedGoal) => {
+  Goal.findByIdAndDelete(id, (error, deletedGoal) => {
     if (deletedGoal) {
       res.status(200).json({
         message: "Goal deleted successfully.",
