@@ -1,108 +1,110 @@
 const Budget = require("../models/budgetModel");
 
-const createBudget = (req, res) => {
-  const budget = new Budget(req.body);
-  budget.save().then((savedBudget) => {
-    res
-      .status(201)
-      .json({
-        message: "Budget created successfully.",
-        CreateBudget: savedBudget,
-      })
-      .catch((error) => {
-        res.status(500).json({
-          message: "Your budget could not be created. Please try again later.",
-          CreateError: error,
-        });
-      });
-  });
+const createBudget = async (req, res) => {
+  try {
+    const budget = new Budget(req.body);
+    const savedBudget = await budget.save();
+    res.status(201).json({
+      message: "Budget created successfully.",
+      CreateBudget: savedBudget,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Your budget could not be created. Please try again later.",
+      CreateError: error,
+    });
+  }
 };
 
-const getAllBudgets = (req, res) => {
-  Budget.find((budgets, error) => {
-    if (budgets) {
-      res.status(200).json({
-        message: "All budgets fetched successfully.",
-        GetAllBudgets: budgets,
-      });
-    } else if (budgets.length === 0) {
+const getAllBudgets = async (req, res) => {
+  try {
+    const budgets = await Budget.find();
+    if (budgets.length === 0) {
       res.status(404).json({
         message: "No budgets found.",
         GetAllBudgets: budgets,
       });
     } else {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        GetAllBudgets: error,
+      res.status(200).json({
+        message: "All budgets fetched successfully.",
+        GetAllBudgets: budgets,
       });
     }
-  });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong. Please try again later.",
+      GetAllBudgets: error,
+    });
+  }
 };
 
-const getBudgetById = (req, res) => {
+const getBudgetById = async (req, res) => {
   const id = req.params.id;
-  Budget.findById(id, (budget, error) => {
-    if (budget) {
+  try {
+    const budget = await Budget.findById(id);
+    if (!budget) {
+      res.status(404).json({
+        message: "Budget not found.",
+        GetBudgetById: budget,
+      });
+    } else {
       res.status(200).json({
         message: "Budget found successfully.",
         GetBudgetById: budget,
       });
-    } else if (!budget) {
-      res.status(404).json({
-        message: "Budget not found.",
-        GetBudgetById: budget,
-      });
-    } else {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        GetBudgetById: error,
-      });
     }
-  });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong. Please try again later.",
+      GetBudgetById: error,
+    });
+  }
 };
 
-const updateBudget = (req, res) => {
+const updateBudget = async (req, res) => {
   const id = req.params.id;
-  Budget.findByIdAndUpdate(id, req.body, { new: true }, (budget, error) => {
-    if (budget) {
+  try {
+    const budget = await Budget.findByIdAndUpdate(id, req.body, { new: true });
+    if (!budget) {
+      res.status(404).json({
+        message: "Budget not found.",
+        UpdateBudget: budget,
+      });
+    } else {
       res.status(200).json({
         message: "Budget updated successfully.",
         UpdateBudget: budget,
       });
-    } else if (!budget) {
-      res.status(404).json({
-        message: "Budget not found.",
-        UpdateBudget: budget,
-      });
-    } else {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        UpdateBudget: error,
-      });
     }
-  });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong. Please try again later.",
+      UpdateBudget: error,
+    });
+  }
 };
 
-const deleteBudget = (req, res) => {
+const deleteBudget = async (req, res) => {
   const id = req.params.id;
-  Budget.findByIdAndDelete(id, (budget, error) => {
-    if (budget) {
+  try {
+    const budget = await Budget.findByIdAndDelete(id);
+    if (!budget) {
+      res.status(404).json({
+        message: "Budget not found.",
+        DeleteBudget: budget,
+      });
+    } else {
       res.status(200).json({
         message: "Budget deleted successfully.",
         DeleteBudget: budget,
       });
-    } else if (!budget) {
-      res.status(404).json({
-        message: "Budget not found.",
-        DeleteBudget: budget,
-      });
-    } else {
-      res.status(500).json({
-        message: "Something went wrong. Please try again later.",
-        DeleteBudget: error,
-      });
     }
-  });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong. Please try again later.",
+      DeleteBudget: error,
+    });
+  }
 };
 
 module.exports = {

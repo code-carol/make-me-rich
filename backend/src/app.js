@@ -1,17 +1,17 @@
 const express = require("express");
 const app = express();
-const expensesRoutes = require("./routes/expensesRoutes");
-const budgetsRoutes = require("./routes/budgetsRoutes");
-const categoriesRoutes = require("./routes/categoriesRoutes");
-const goalsRoutes = require("./routes/goalsRoutes");
-const paymentsRoutes = require("./routes/paymentsRoutes");
+const routes = [
+  { path: "/expenses", router: require("./routes/expensesRoutes") },
+  { path: "/budget", router: require("./routes/budgetsRoutes") },
+  { path: "/category", router: require("./routes/categoriesRoutes") },
+  { path: "/goal", router: require("./routes/goalsRoutes") },
+  { path: "/payment", router: require("./routes/paymentsRoutes") },
+];
 
 app.use(express.json());
-app.use("/expenses", expensesRoutes);
-app.use("/budget", budgetsRoutes);
-app.use("/category", categoriesRoutes);
-app.use("/goal", goalsRoutes);
-app.use("/payment", paymentsRoutes);
 
+routes.forEach((route) => {
+  app.use(route.path, route.router);
+});
 
 module.exports = app;
